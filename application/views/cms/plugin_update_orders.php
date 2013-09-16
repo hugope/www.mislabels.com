@@ -11,7 +11,7 @@
 				<dt>Nombre del usuario</dt><dd><?php echo $CUSTOMER_NAME?></dd>
 			</dl>
 		</div>
-		<div class="span2"><a class="btn btn-block" href="<?php echo site_url('cms/plugin_orders/print_order/'.$SHOPPING_ID)?>" target="_blank"><i class="icon-print"></i> Imprimir</a></div>
+		<div class="span2"><a class="btn btn-block" href="javascript:open_popup()"><i class="icon-print"></i> Imprimir</a></div>
 	</div>
 	
 	<div class="row-fluid">
@@ -90,4 +90,7 @@
 		});
 		
 	});
+	function open_popup(){
+		window.open("<?php echo site_url('cms/plugin_orders/print_order/'.$SHOPPING_ID)?>","_blank","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=yes, width=700, height=600");
+	}
 </script>

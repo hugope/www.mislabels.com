@@ -80,7 +80,7 @@ class Cms_plugin_model extends MY_Model {
 	    * Plugin Orders
 	    */
 	    public function get_single_order($orderID){
-	    	$this->db->select('PSC.ID, PSC.SHOPPING_SESSION, CONCAT(PC.CUSTOMER_NAME, \' \', PC.CUSTOMER_LASTNAME) as CUSTOMER_NAME, PSC.SHOPPING_CUSTOMERID, PSC.SHOPPING_DATECREATED, PSC.SHOPPING_STATUS, PSC.SHOPPING_SHIPPINGDATE, CONCAT(PSA.SHIPPING_ADDRESS, \', \', PSA.SHIPPING_CITY) AS SHOPPING_SHIPPINGADDRESS, PC.CUSTOMER_EMAIL', FALSE);
+	    	$this->db->select('PSC.ID, PSC.SHOPPING_SESSION, CONCAT(PC.CUSTOMER_NAME, \' \', PC.CUSTOMER_LASTNAME) as CUSTOMER_NAME, PSC.SHOPPING_CUSTOMERID, PSC.SHOPPING_DATECREATED, PSC.SHOPPING_STATUS, PSC.SHOPPING_SHIPPINGDATE, CONCAT(PSA.SHIPPING_ADDRESS, \', \', PSA.SHIPPING_CITY) AS SHOPPING_SHIPPINGADDRESS, PSA.SHIPPING_TYPE, PC.CUSTOMER_EMAIL, PC.CUSTOMER_PHONE, PSC.SHOPPING_CUSTOMER_BILLINGNAME, PSC.SHOPPING_CUSTOMER_BILLINGTIN, PSC.SHOPPING_CUSTOMER_BILLINGLOCATION, PC.CUSTOMER_ADDRESS', FALSE);
 	    	$this->db->from($this->_table.' AS `PSC`');
 			$this->db->join('PLUGIN_CUSTOMERS PC', 'PC.ID = PSC.SHOPPING_CUSTOMERID');
 			$this->db->join('PLUGIN_SHIPPING_ADDRESS PSA', 'PSA.ID = PSC.SHOPPING_SHIPPINGADDRESS');
@@ -90,10 +90,11 @@ class Cms_plugin_model extends MY_Model {
 			
 				
 			//Get the order products
-			$this->db->select('PS.ID, PS.STICKER_NAME, PC.CATEGORY_NAME, PS.STICKER_PRICE, PSCS.STICKER_QUANTITY');
+			$this->db->select('PS.ID, PS.STICKER_NAME, PC.CATEGORY_NAME, PS.STICKER_PRICE, PSCS.STICKER_QUANTITY, PSCS.STICKER_COLOR, PSCS.STICKER_TEXT, PSCS.STICKER_QUANTITY, PF.FONT_NAME');
 			$this->db->from('PLUGIN_STICKERS PS');
 			$this->db->join('PLUGIN_CATEGORIES PC', 'PC.ID = PS.STICKER_CATEGORY');
 			$this->db->join('PLUGIN_SHOPPING_CART_STICKERS PSCS', 'PSCS.STICKER_TYPE = PS.ID');
+			$this->db->join('PLUGIN_FONTS PF', 'PF.ID = PSCS.STICKER_FONT');
 			$this->db->where('PSCS.STICKER_CART', $orderID);
 			$query = $this->db->get();
 			$sticker = $query->result();
@@ -104,7 +105,10 @@ class Cms_plugin_model extends MY_Model {
 															'STICKER_NAME' 		=> $sticker->STICKER_NAME,
 															'STICKER_CATEGORY'	=> $sticker->CATEGORY_NAME,
 															'STICKER_QUANTITY'	=> $sticker->STICKER_QUANTITY,
-															'STICKER_PRICE'		=> $sticker->STICKER_PRICE
+															'STICKER_PRICE'		=> $sticker->STICKER_PRICE,
+															'FONT_NAME'			=> $sticker->FONT_NAME,
+															'STICKER_TEXT'		=> json_decode($sticker->STICKER_TEXT),
+															'STICKER_COLOR'		=> $sticker->STICKER_COLOR
 															);
 			endforeach;
 			

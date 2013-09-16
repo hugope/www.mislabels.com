@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="<?php echo $this->fw_resource->request('RESOURCE_THEME_HTMLTYPE')?>; charset=<?php echo $this->fw_resource->request('RESOURCE_THEME_CHARSET')?>" />
-	<title><?php echo 'Imprimir Orden '.$this->uri->segment(3).':: MisLabels.com'; ?></title>
+	<title><?php echo 'Imprimir Orden '.$SHOPPING_CODE.':: MisLabels.com'; ?></title>
     <link rel="stylesheet" href="<?php echo base_url('library/cms/css/bootstrap.min.css'); ?>" type="text/css" media="screen" />
 </head>
-<body>
+<body onload="window.print()">
 	<div class="container-fluid">
-		<h2>Imprimir Orden - <?php echo $this->uri->segment(3)?></h2>
+		<h2>Imprimir Orden - <?php echo $SHOPPING_CODE?></h2>
 		<div class="row-fluid">
 			<div class="span12"><h3>Datos de la Órden</h3></div>
 		</div>
@@ -15,17 +15,17 @@
 			<table class="table">
 				<tr>
 					<td><b>Status</b></td>
-					<td>PENDIENTE</td>
+					<td><?php echo $ORDER_DATA->SHOPPING_STATUS?></td>
 					<td><b>Fecha de entrega</b></td>
-					<td colspan="3">20/09/2013</td>
+					<td colspan="3"><?php echo mysql_date_to_dmy($ORDER_DATA->SHOPPING_DATECREATED) ?></td>
 				</tr>
 				<tr>
 					<td><b>Nombre de facturación</b></td>
-					<td>Guido Orellana</td>
+					<td><?php echo $ORDER_DATA->SHOPPING_CUSTOMER_BILLINGNAME?></td>
 					<td><b>NIT</b></td>
-					<td>123456-7</td>
+					<td><?php echo $ORDER_DATA->SHOPPING_CUSTOMER_BILLINGTIN?></td>
 					<td><b>Dirección</b></td>
-					<td>Ciudad</td>
+					<td><?php echo $ORDER_DATA->SHOPPING_CUSTOMER_BILLINGLOCATION?></td>
 				</tr>
 			</table>
 		</div>
@@ -37,17 +37,17 @@
 			<table class="table">
 				<tr>
 					<td><b>Nombre y Apellido</b></td>
-					<td colspan="3">Guido Orellana</td>
+					<td colspan="3"><?php echo $ORDER_DATA->CUSTOMER_NAME?></td>
 				</tr>
 				<tr>
 					<td><b>Email</b></td>
-					<td>guido@grupoperinola.com</td>
+					<td><?php echo $ORDER_DATA->CUSTOMER_EMAIL?></td>
 					<td><b>Teléfono</b></td>
-					<td>12345678</td>
+					<td><?php echo $ORDER_DATA->CUSTOMER_PHONE?></td>
 				</tr>
 				<tr>
 					<td><b>Dirección</b></td>
-					<td colspan="3">13 Ave. 2-81 Z.15 - Ciudad de Guatemala</td>
+					<td colspan="3"><?php echo $ORDER_DATA->CUSTOMER_ADDRESS?></td>
 				</tr>
 			</table>
 		</div>
@@ -60,11 +60,11 @@
 				<table class="table">
 					<tr>
 						<td><b>Dirección de entrega</b></td>
-						<td>zona 15, colonia Tecn Humn, Cerca del hospital el pilar</td>
+						<td><?php echo $ORDER_DATA->SHOPPING_SHIPPINGADDRESS?></td>
 					</tr>
 					<tr>
 						<td><b>Tipo de entrega</b></td>
-						<td>Dirección particular</td>
+						<td><?php echo $ORDER_DATA->SHIPPING_TYPE?></td>
 					</tr>
 				</table>
 			</div>
@@ -77,42 +77,20 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<table class="table">
+					<?php foreach($ORDER_DATA->SHOPPING_CART as $etiqueta):?>
 					<tr>
 						<td><b>Tipo de etiqueta</b></td>
-						<td>A-1</td>
+						<td><?php echo $etiqueta->STICKER_NAME?></td>
 						<td><b>Color</b></td>
-						<td>9</td>
+						<td><?php echo $etiqueta->STICKER_COLOR?></td>
 						<td><b>Tipografía</b></td>
-						<td>Apple Casual</td>
+						<td><?php echo $etiqueta->FONT_NAME?></td>
 						<td><b>Texto</b></td>
-						<td>Esto es mío</td>
+						<td><?php echo implode(', ', $etiqueta->STICKER_TEXT)?></td>
 						<td><b>Cantidad</b></td>
-						<td>1</td>
+						<td><?php echo $etiqueta->STICKER_QUANTITY?></td>
 					</tr>
-					<tr>
-						<td><b>Tipo de etiqueta</b></td>
-						<td>A-1</td>
-						<td><b>Color</b></td>
-						<td>9</td>
-						<td><b>Tipografía</b></td>
-						<td>Apple Casual</td>
-						<td><b>Texto</b></td>
-						<td>Esto es mío</td>
-						<td><b>Cantidad</b></td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td><b>Tipo de etiqueta</b></td>
-						<td>D-1</td>
-						<td><b>Color</b></td>
-						<td>9</td>
-						<td><b>Tipografía</b></td>
-						<td>Apple Casual</td>
-						<td><b>Texto</b></td>
-						<td>Azcar, Cereal, Cocina, Margarina, Frijol, Avena, Miel, Incaparina, Cereal, Harina, Granos, Semillas</td>
-						<td><b>Cantidad</b></td>
-						<td>2</td>
-					</tr>
+					<?php endforeach?>
 				</table>
 			</div>
 		</div>

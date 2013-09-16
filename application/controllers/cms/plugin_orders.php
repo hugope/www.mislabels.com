@@ -165,7 +165,9 @@ class Plugin_orders extends PL_Controller {
 	 }
 	//Plantilla de impresión
 	public function print_order($order){
-		$data['order_data'] = $this->plugins_model->get_single_order($order);
+		$data['ORDER_DATA'] 	= $this->plugins_model->get_single_order($order);
+		$data['SHOPPING_CODE']	= $this->fw_utilities->get_order_code(array('ID' => $data['ORDER_DATA']->ID, 'date' => $data['ORDER_DATA']->SHOPPING_DATECREATED));
+		
 		
 		$this->load->view('cms/print_order', $data);
 	}
