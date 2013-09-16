@@ -64,7 +64,7 @@ class PL_Controller extends MY_Controller {
 		
 		//Display de plugins del FW
 		if($this->display_pagination == TRUE):
-			$display_filter						= ($this->uri->segment(4) == '')?'display_all':$this->uri->segment(4);
+			$display_filter					= ($this->uri->segment(4) == '')?'display_all':$this->uri->segment(4);
 			$config = array(
 						'base_url'			=> base_url('cms/'.strtolower($this->current_plugin).'/index/'.$display_filter.'/'),
 						'total_rows'		=> $this->pagination_total_rows,

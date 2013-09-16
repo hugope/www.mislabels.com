@@ -4,13 +4,14 @@
 	</div>
 	
 	<div class="row-fluid">
-		<div class="span12">
+		<div class="span10">
 			<dl class="dl-horizontal">
 				<dt>C&oacute;digo del pedido</dt><dd><?php echo $SHOPPING_CODE?></dd>
 				<dt>Fecha de creaci&oacute;n</dt><dd><?php echo $SHOPPING_DATECREATED?></dd>
 				<dt>Nombre del usuario</dt><dd><?php echo $CUSTOMER_NAME?></dd>
 			</dl>
 		</div>
+		<div class="span2"><a class="btn btn-block" href="<?php echo site_url('cms/plugin_orders/print_order/'.$SHOPPING_ID)?>" target="_blank"><i class="icon-print"></i> Imprimir</a></div>
 	</div>
 	
 	<div class="row-fluid">
@@ -73,6 +74,7 @@
 						<div class="form-actions">
 							<input type="submit" class="btn btn-primary" name="POST_SUBMIT" value="<?php echo $submit_button?>" />
 							<a href="<?php echo base_url('cms/plugin_orders/update_table_row/'.$SHOPPING_ID)?>" class="btn" >Cancelar</a>
+							
 						</div>
 					</form>
 				</div>
@@ -86,5 +88,6 @@
 		$("input#shopping_date").datepicker({
 			dateFormat: 'yy-mm-dd'
 		});
+		
 	});
 </script>

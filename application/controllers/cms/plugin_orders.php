@@ -163,4 +163,10 @@ class Plugin_orders extends PL_Controller {
 		
 		return $fullname;
 	 }
+	//Plantilla de impresión
+	public function print_order($order){
+		$data['order_data'] = $this->plugins_model->get_single_order($order);
+		
+		$this->load->view('cms/print_order', $data);
+	}
 }

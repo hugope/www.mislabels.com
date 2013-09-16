@@ -257,5 +257,5 @@ class Cms_plugin_model extends MY_Model {
 			return $query;
 		 }
 		 
-		 //
+		 //Obtener los datos de la orden
 }
