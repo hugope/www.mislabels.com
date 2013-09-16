@@ -1,0 +1,3 @@
+/**
+ * Función para desplegar lightbox
+ */

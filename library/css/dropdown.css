@@ -1,0 +1,113 @@
+/*********************************************************
+I TRIED TO MAKE THIS EASY TO STYLE! SEE NOTES BELOW
+**********************************************************/
+
+.dropdown a {
+   text-decoration:none;
+	color:#f3f3f3;
+	font-size:13px;
+	font-weight:normal;
+	padding:0px 25px 0px 25px;
+	!padding:0px 23px 0px 23px;
+}
+.dropdown a:hover{
+	box-shadow:inset 0px 0px 10px rgba(0,0,0,.6);
+   -webkit-box-shadow:inset 0px 0px 10px rgba(0,0,0,.6);
+   -moz-box-shadow:inset 0px 0px 10px rgba(0,0,0,.6);
+}
+
+.dropdown li ul {
+	width:194px;
+	padding:14px 0px 8px 0px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	float:left;
+	background:url(../images/submenu_topcorn.png) left top no-repeat;
+	z-index:99999;
+}
+.dropdown li ul li{
+	width:194px;
+	background-image:none;
+	line-height:30px;
+}
+.dropdown li ul li a{
+	display:block;
+	padding:0px 10px 0px 14px;
+	margin:0px 0px 0px 0px;	
+	width:170px;
+	color:#f3f3f3;
+	font-size:13px;
+	}
+	
+.dropdown li ul li a:hover{
+	background:#ab2479;
+	box-shadow:none;
+	}
+	
+.dropdown li ul li a.active{
+	background:#ab2479;
+	}
+			
+
+/************************************************************
+ONLY EDIT BELOW IF YOU REALLY KNOW WHAT YOUR DOING!
+************************************************************/
+.dropdown {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+.dropdown ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+.dropdown a {
+	display:block;
+	color:#f3f3f3;
+	font-size:13px;
+}
+.dropdown li{
+	float:left;
+	line-height:28px;
+	background:url(../images/topnav_libg.jpg) right top no-repeat;
+}
+.dropdown ul {
+	position:absolute;
+	display:none;
+	z-index:99999;
+}
+.dropdown li ul a{
+	float:left;
+	color:#f3f3f3;
+	font-size:13px;
+}
+
+.dropdown li ul li{
+	float:left;
+	/*position:relative;*/
+}
+.dropdown ul ul{
+	top:45%;
+	left:100%;
+	z-index:99999;
+}
+.dropdown li ul ul {
+	width:auto;
+	margin: -1px 1px 0px 0px;
+	padding:10px 0px 10px 0px;
+	float:left;
+	width:194px;
+	background:url(../images/ul_ul_ul_bg.png) left top repeat-y;
+	border-radius:5px;
+	z-index:99999;
+}
+.dropdown li:hover ul ul, .dropdown li:hover ul ul ul, .dropdown li:hover ul ul ul ul{
+	display:none;
+	/*background:#ab2479 !important;*/
+}
+.dropdown li:hover ul, .dropdown li li:hover ul, .dropdown li li li:hover ul, .dropdown li li li li:hover ul{
+	display:block;
+	/*background:#ab2479 !important;*/
+}
+
