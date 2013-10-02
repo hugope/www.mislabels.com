@@ -3,13 +3,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="<?php echo $this->fw_resource->request('RESOURCE_THEME_HTMLTYPE')?>; charset=<?php echo $this->fw_resource->request('RESOURCE_THEME_CHARSET')?>" />
 	<title><?php echo 'Imprimir Orden '.$SHOPPING_CODE.':: MisLabels.com'; ?></title>
-    <link rel="stylesheet" href="<?php echo base_url('library/cms/css/bootstrap.min.css'); ?>" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo base_url('library/cms/css/bootstrap.min.css'); ?>" type="text/css" />
 </head>
 <body onload="window.print()">
 	<div class="container-fluid">
 		<h2>Imprimir Orden - <?php echo $SHOPPING_CODE?></h2>
 		<div class="row-fluid">
-			<div class="span12"><h3>Datos de la Órden</h3></div>
+			<div class="span12"><h3>Datos de la Orden</h3></div>
 		</div>
 		<div class="row-fluid">
 			<table class="table">
@@ -79,16 +79,18 @@
 				<table class="table">
 					<?php foreach($ORDER_DATA->SHOPPING_CART as $etiqueta):?>
 					<tr>
-						<td><b>Tipo de etiqueta</b></td>
+						<td><b>C&oacute;digo</b></td>
 						<td><?php echo $etiqueta->STICKER_NAME?></td>
 						<td><b>Color</b></td>
 						<td><?php echo $etiqueta->STICKER_COLOR?></td>
 						<td><b>Tipografía</b></td>
 						<td><?php echo $etiqueta->FONT_NAME?></td>
 						<td><b>Texto</b></td>
-						<td><?php echo implode(', ', $etiqueta->STICKER_TEXT)?></td>
+						<td><?php echo @implode(', ', $etiqueta->STICKER_TEXT)?></td>
 						<td><b>Cantidad</b></td>
 						<td><?php echo $etiqueta->STICKER_QUANTITY?></td>
+						<td><b>Tipo</b></td>
+						<td><?php echo $etiqueta->STICKER_TYPE?></td>
 					</tr>
 					<?php endforeach?>
 				</table>

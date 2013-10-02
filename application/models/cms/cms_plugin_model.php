@@ -90,7 +90,7 @@ class Cms_plugin_model extends MY_Model {
 			
 				
 			//Get the order products
-			$this->db->select('PS.ID, PS.STICKER_NAME, PC.CATEGORY_NAME, PS.STICKER_PRICE, PSCS.STICKER_QUANTITY, PSCS.STICKER_COLOR, PSCS.STICKER_TEXT, PSCS.STICKER_QUANTITY, PF.FONT_NAME');
+			$this->db->select('PS.ID, PS.STICKER_NAME, PC.CATEGORY_NAME, PS.STICKER_PRICE, PSCS.STICKER_QUANTITY, PSCS.STICKER_COLOR, PSCS.STICKER_TEXT, PSCS.STICKER_QUANTITY, PF.FONT_NAME, PS.STICKER_TYPE');
 			$this->db->from('PLUGIN_STICKERS PS');
 			$this->db->join('PLUGIN_CATEGORIES PC', 'PC.ID = PS.STICKER_CATEGORY');
 			$this->db->join('PLUGIN_SHOPPING_CART_STICKERS PSCS', 'PSCS.STICKER_TYPE = PS.ID');
@@ -108,7 +108,8 @@ class Cms_plugin_model extends MY_Model {
 															'STICKER_PRICE'		=> $sticker->STICKER_PRICE,
 															'FONT_NAME'			=> $sticker->FONT_NAME,
 															'STICKER_TEXT'		=> json_decode($sticker->STICKER_TEXT),
-															'STICKER_COLOR'		=> $sticker->STICKER_COLOR
+															'STICKER_COLOR'		=> $sticker->STICKER_COLOR,
+															'STICKER_TYPE'		=> $sticker->STICKER_TYPE
 															);
 			endforeach;
 			
@@ -141,20 +142,22 @@ class Cms_plugin_model extends MY_Model {
 			$userGroup = $this->users_query($filter, TRUE)->get();
 			$userQuery = $this->users_query($filter)->get();
 			
+			
 			//Obtener los productos
 			foreach($userQuery->result() as $userOrder){
 				//Obtener todas las órdenes realizadas
-				$stickersArray = json_decode($userOrder->SHOPPING_CART, true);
-				foreach($stickersArray as $stickerID => $stickerQuan){
+				$stickersArray = $this->stickers_by_order($userOrder->ID);
+				$stickerAmount = array();
+				foreach($stickersArray as $sticker){
 					//Obtener todos los productos
 					$query = $this->db->select('STICKER_PRICE')
 					->from('PLUGIN_STICKERS')
-					->where('ID', $stickerID)
+					->where('ID', $sticker->ID)
 					->get();
 					
 					$singleSticker = $query->row();
 					
-					$stickerAmount[$userOrder->ID][] = ($singleSticker->STICKER_PRICE * $stickerQuan);
+					$stickerAmount[$userOrder->ID][] = ($singleSticker->STICKER_PRICE * $sticker->STICKER_QUANTITY);
 				}
 				
 			}
@@ -163,7 +166,7 @@ class Cms_plugin_model extends MY_Model {
 			//Asignar a cada cliente, el monto gastado en producto
 			foreach($userGroup->result() as $customer){
 				//Los gastos del cliente especifico
-				$customerExpenses = array_sum($stickerAmount[$customer->ID]);
+				@$customerExpenses = array_sum($stickerAmount[$customer->ID]);
 				
 				//Asignamos los gastos al cliente
 				$customer->CUSTOMER_TOTALEXPENSES = $customerExpenses;
@@ -177,19 +180,20 @@ class Cms_plugin_model extends MY_Model {
 		 public function export_stickers_data($filter){
 		 	//Obtener órdenes
 		 	$orders = $this->orders_query($filter, TRUE)->result();
-			
 			$stickers = array();
 			//Obtener stickers
 			foreach($orders as $order):
 				//Obtener los productos en un array
-				$productsArray = json_decode($order->SHOPPING_CART, true);
-				foreach($productsArray as $productID => $productQuant){
+				
+				$productsArray = $this->stickers_by_order($order->ID);
+				foreach($productsArray as $product){
 					//Obtener datos de cada sticker
 					$query = $this->db->select('PS.ID, PS.STICKER_NAME, PC.CATEGORY_NAME')
 					->from('PLUGIN_STICKERS PS')
 					->join('PLUGIN_CATEGORIES PC', 'PC.ID = PS.STICKER_CATEGORY')
-					->where('PS.ID', $productID)->get();
+					->where('PS.ID', $product->STICKER_TYPE)->get();
 					$sticker = $query->row();
+					
 					$sticker->SHOPPING_CUSTOMER = $order->SHOPPING_CUSTOMER;
 					$sticker->SHOPPING_DATE = $order->SHOPPING_DATECREATED;
 					
@@ -209,7 +213,7 @@ class Cms_plugin_model extends MY_Model {
 		 							"PSC.SHOPPING_STATUS"
 									);
 			if($stickers != FALSE){
-			$selectArray[] = "PSC.SHOPPING_CART";
+			//$selectArray[] = "PSC.SHOPPING_CART";
 			}
 			$select = implode(', ', $selectArray);
 			
@@ -238,7 +242,7 @@ class Cms_plugin_model extends MY_Model {
 			if($gorup_by != FALSE){
 			$selectArray[] = "COUNT(1) AS CUSTOMER_ORDERS";
 			}else{
-			$selectArray[] = "PSC.SHOPPING_CART";
+			//$selectArray[] = "PSC.SHOPPING_CART";
 			}
 			$select = implode(', ', $selectArray);
 			
@@ -261,5 +265,10 @@ class Cms_plugin_model extends MY_Model {
 			return $query;
 		 }
 		 
-		 //Obtener los datos de la orden
+		 //Obtener los stickers de la orden
+		 private function stickers_by_order($orderid){
+			$query = 	$this->db->from('PLUGIN_SHOPPING_CART_STICKERS')
+						->where('STICKER_CART', $orderid)->get();
+			return $query->result();
+		}
 }

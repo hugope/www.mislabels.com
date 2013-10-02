@@ -10,21 +10,28 @@
 			<p><span>Categor&iacute;a:</span><a href="#"> <?php echo $sticker->CATEGORY_NAME?></a> &nbsp;  &nbsp;  &nbsp; <span>Tipo:</span><a href="#"> <?php echo $sticker->LABEL?></a></p>
 		</div>
 		<div class="a1boxRight">
-			<a class="personalizar" style="background-color: gray;background-image: url(<?php echo base_url('library/images/personalizar.png')?>);background-repeat: no-repeat;" href="#">
+			<a class="personalizar" style="background-color: gray;background-image: url(<?php echo base_url('library/images/personalizar.png')?>);background-repeat: no-repeat;" href="<?php echo site_url('etiquetas')?>">
 				regresar al cat&aacute;logo
 			</a>
+			<a href="javascript:void(0)" class="btn btn-primary" onclick="display_modal()"><i class="icon-question-sign icon-white"></i></a>
 		</div>
 		<div class="clr"></div>
 	</div>
 	<div class="labelSetleft">
 		<form action="<?php echo $formaction?>" method="POST">
+			
+			<div class="height_divider">&nbsp;</div>
 			<h3>Texto</h3>
-			<p>Ingresa el texto que desea incluir en el dise&ntilde;o.</p>
+			<p>Ingresa el texto que desea incluir en el dise&ntilde;o de tus etiquetas.</p>
 			<div class="textoBox">
-				<div class="refresh"><a href="#"><img src="<?php echo base_url('library/images/refresh.jpg')?>" alt="Refresh" /></a></div>
+				<div class="input-append">
 				<input type="text" onfocus="if(this.value=='<?php echo ascii_to_entities($texto)?>') this.value='';" onblur="if(this.value=='') this.value='<?php echo ascii_to_entities($texto)?>';" value="<?php echo ascii_to_entities($texto)?>" alt="<?php echo ascii_to_entities($texto)?>" name="STICKER_LABEL[]" id="sticker_label"/>
-				<p><span>*El texto debe tener un m&aacute;ximo de 16 caracteres.</span></p>
+				<a class="btn"><i class="icon-refresh"></i>&nbsp;</a>
+				</div>
+				<p style="float:left; width:100%;"><span>*El texto debe tener un m&aacute;ximo de 16 caracteres.</span></p>
 			</div>
+			
+			<div class="height_divider">&nbsp;</div>
 			<h3>Tipograf&iacute;a</h3>
 			<p>Selecciona una tipograf&iacute;a para tu etiqueta</p>
 				<?php foreach($fontfamilies as $fonts):?>
@@ -40,11 +47,19 @@
 				<?php endforeach?>
 			<div class="clr"></div>
 
-			<div class="qtybox"><h3>Cantidad</h3>
-				<input type="text" onfocus="if(this.value=='1') this.value='';" onblur="if(this.value=='') this.value='1';" value="1" alt="1" name="STICKER_QUANTITY"/>
-				<span>set de 6 etiquetas</span>
+			<div class="well well-large">
+				<div class="qtybox"><h3>Cantidad</h3>
+					<input type="text" onfocus="if(this.value=='1') this.value='';" onblur="if(this.value=='') this.value='1';" value="1" alt="1" name="STICKER_QUANTITY"/>
+					<span></span>
+				</div>
+				<div class="qtybox"><h3>Precio</h3>
+					<span>Q. <?php echo $sticker->STICKER_PRICE?></span>
+				</div>
+				<div class="qtybox"><h3>Tipo</h3>
+					<?php echo form_dropdown('STICKER_TYPE', display_sticker_types())?>
+				</div>
 			</div>
-
+			
 			<input type="hidden" name="STICKER_TYPE" value="<?php echo $this->uri->segment(3)?>" />
 			<div class="greenbtn">
 				<input type="submit" value="Guardar y Continuar" />
@@ -65,6 +80,7 @@
 			</div>
 		</form>
 	</div>
+	<div id="template_btn_container"><a href="javascript:void(0)" class="btn btn-warning btn-large" onclick="display_modal()">Ver Plantilla de Etiqueta</a></div>
 		<div class="labelSetright rightSetContainer">
 			<div class="labelNote">Esta es solo una vista previa. El producto final puede variar un poco.</div>
 			<div class="labelSetContainer tipob" style="color: <?=$sticker->STICKER_TEXT_COLOR?>; background-color:#FFF;">
@@ -114,6 +130,10 @@
 		$('.labelSetContainer .text.curved').arctext({
 			radius		: 50
 		});
+	display_modal()
 	});
+	function display_modal(){
+		popup_show('<img src="<?php echo site_url('library/images/help_image.gif')?>" alt="Ayuda de proceso"/>');
+	}
 </script>
 

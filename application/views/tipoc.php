@@ -10,14 +10,17 @@
 			<p><span>Categor&iacute;a:</span><a href="#"> <?php echo $sticker->CATEGORY_NAME?></a> &nbsp;  &nbsp;  &nbsp; <span>Tipo:</span><a href="#"> <?php echo $sticker->LABEL?></a></p>
 		</div>
 		<div class="a1boxRight">
-			<a class="personalizar" style="background-color: gray;background-image: url(<?php echo base_url('library/images/personalizar.png')?>);background-repeat: no-repeat;" href="#">
+			<a class="personalizar" style="background-color: gray;background-image: url(<?php echo base_url('library/images/personalizar.png')?>);background-repeat: no-repeat;" href="<?php echo site_url('etiquetas')?>">
 				regresar al cat&aacute;logo
 			</a>
+			<a href="javascript:void(0)" class="btn btn-primary" onclick="display_modal()"><i class="icon-question-sign icon-white"></i></a>
 		</div>
 		<div class="clr"></div>
 	</div>
 	<div class="labelSetleft">
 		<form action="<?php echo $formaction?>" method="POST">
+			
+			<div class="height_divider">&nbsp;</div>
 			<h3>Color</h3>
 			<p>Selecciona un color del siguiente listado</p>
 			<div class="colorChoose">
@@ -28,7 +31,8 @@
 					<input type="hidden" value="<?php echo $colorlabel?>" id="colorlabel" name="STICKER_COLOR" />
 				</div>
 			</div>
-
+			
+			<div class="height_divider">&nbsp;</div>
 			<h3>Tipograf&iacute;a</h3>
 			<p>Selecciona una tipograf&iacute;a para tu etiqueta</p>
 				<?php foreach($fontfamilies as $fonts):?>
@@ -44,62 +48,72 @@
 				<?php endforeach?>
 			<div class="clr"></div>
 			
-			<div class="qtybox"><h3>Cantidad</h3>
-				<input type="text" onfocus="if(this.value=='1') this.value='';" onblur="if(this.value=='') this.value='1';" value="1" alt="1" name="STICKER_QUANTITY"/>
-				<span>set de 6 etiquetas</span>
-			</div>
-			
+			<div class="height_divider">&nbsp;</div>
 			<h3>Textos</h3>
-			<p>Escoge el tama&ntilde;o de tu etiqueta</p>
+			<p>Selecciona el tama&ntilde;o de tu etiqueta</p>
 		    <div class="btn-group" data-toggle="buttons-radio">
-			    <a href="javascript:void(0)" class="btn btn-primary active" labelsize="40">Peque&ntilde;a</a>
-			    <a href="javascript:void(0)" class="btn btn-primary" labelsize="20">Mediana</a>
-			    <a href="javascript:void(0)" class="btn btn-primary" labelsize="12">Grande</a>
+			    <a href="javascript:void(0)" class="btn btn-primary" labelsize="40">Peque&ntilde;a (40)</a>
+			    <a href="javascript:void(0)" class="btn btn-primary active" labelsize="20">Mediana (20)</a>
+			    <a href="javascript:void(0)" class="btn btn-primary" labelsize="12">Grande (12)</a>
 		    </div>
 		    <p>&nbsp;</p>
-			<p>Ingresa el texto que desea incluir en el dise&ntilde;o.</p>
+			<p>Ingresa el texto que deseas incluir en el dise&ntilde;o.</p>
 			
 			<div class="textoBox labelsInputList">
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="1" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="2" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="3" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="4" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="5" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="6" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="7" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="8" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="9" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="10" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="11" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="12" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="13" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="14" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="15" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="16" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="17" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="18" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="19" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="20" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="21" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="22" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="23" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="24" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="25" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="26" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="27" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="28" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="29" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="30" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="31" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="32" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="33" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="34" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="35" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="36" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="37" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="38" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="39" />
-				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" number="40" />
+				<label>1</label>
+				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="1" />
+				<hr />
+				<label>2</label>
+				<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="2" />
+				<hr />
+				<label>3</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="3" />
+				<hr />
+				<label>4</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="4" />
+				<hr />
+				<label>5</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="5" />
+				<hr />
+				<label>6</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="6" />
+				<hr />
+				<label>7</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="7" />
+				<hr />
+				<label>8</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="8" />
+				<hr />
+				<label>9</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="9" />
+				<hr />
+				<label>10</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="10" />
+				<hr />
+				<label>11</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="11" />
+				<hr />
+				<label>12</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="12" />
+				<hr />
+				<label>13</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="13" />
+				<hr />
+				<label>14</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="14" />
+				<hr />
+				<label>15</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="15" />
+				<hr />
+				<label>16</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="16" />
+				<hr />
+				<label>17</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="17" />
+				<hr />
+				<label>18</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="18" />
+				<hr />
+				<label>19</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="19" />
+				<hr />
+				<label>20</label><input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" number="20" />
+			</div>
+			
+			<div class="well well-large">
+				<div class="qtybox"><h3>Cantidad</h3>
+					<input type="text" onfocus="if(this.value=='1') this.value='';" onblur="if(this.value=='') this.value='1';" value="1" alt="1" name="STICKER_QUANTITY"/>
+					<span></span>
+				</div>
+				<div class="qtybox"><h3>Precio</h3>
+					<span>Q. <?php echo $sticker->STICKER_PRICE?></span>
+				</div>
+				<div class="qtybox"><h3>Tipo</h3>
+					<?php echo form_dropdown('STICKER_TYPE', display_sticker_types())?>
+				</div>
 			</div>
 			
 			<input type="hidden" name="STICKER_TYPE" value="<?php echo $this->uri->segment(3)?>" />
@@ -122,14 +136,15 @@
 			</div>
 		</form>
 	</div>
+	<div id="template_btn_container"><a href="javascript:void(0)" class="btn btn-warning btn-large" onclick="display_modal()">Ver Plantilla de Etiqueta</a></div>
 		<div class="labelSetright rightSetContainer">
 			<div class="labelNote">Esta es solo una vista previa. El producto final puede variar un poco.</div>
-			<div class="labelSetContainer tipoc size40" style="background-color: <?php echo $currentcolor->COLOR_CODE?>">
+			<div class="labelSetContainer tipoc size20" style="background-color: <?php echo $currentcolor->COLOR_CODE?>">
 				
-				<?php for($i = 0; $i < 40; $i++):?>
+				<?php for($i = 0; $i < 20; $i++):?>
 				<div class="prevlabel">
 					<img src="<?=base_url('user_files/uploads').'/'.$iconimg?>" />
-					<span>Cereales</span>
+					<span>Escriba Aquí</span>
 				</div>
 				<?php endfor?>
 			</div>
@@ -161,7 +176,12 @@
 		});
 		
 		change_label_text();
+
+	display_modal()
 	});
+	function display_modal(){
+		popup_show('<img src="<?php echo site_url('library/images/help_image.gif')?>" alt="Ayuda de proceso"/>');
+	}
 	
 </script>
 

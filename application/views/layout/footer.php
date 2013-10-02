@@ -35,8 +35,7 @@
 						<ul>
 							<li  class=""><a href="#"><img src="<?php echo base_url('library/images/newletter.png')?>" alt="Newsletter" /><br />Newsletter</a></li>
 							<li><a href="<?php echo $this->fw_content->single_post('facebook')?>"><img src="<?php echo base_url('library/images/facebook.png')?>" alt="Facebook" /><br />Facebook</a></li>
-							<li><a href="<?php echo $this->fw_content->single_post('twitter')?>"><img src="<?php echo base_url('library/images/twitter.png')?>" alt="Twitter" /><br />Twitter</a></li>
-							<li><a href="<?php echo $this->fw_content->single_post('pinterest')?>"><img src="<?php echo base_url('library/images/printrest.png')?>" alt="Pintrest" /><br />Printrest</a></li>
+							<li><a href="<?php echo $this->fw_content->single_post('youtube')?>"><img src="<?php echo base_url('library/images/youtube.png')?>" alt="YouTube" /><br />Youtube</a></li>
 						</ul>
 						<div class="clr"></div>
 					</div>

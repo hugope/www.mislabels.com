@@ -214,3 +214,11 @@ function display_zonas_prices($localidad = NULL){
 		);
 	return ($localidad == NULL)?$zonas_segun_localidad:$zonas_segun_localidad[$localidad];
 }
+function display_sticker_types(){
+	$tipos_sticker = array(
+		'IMPERMEABLE' => 'Impermeable',
+		'PERMANENTE' => 'Permanente',
+		'PLANCHABLE' => 'Planchable'
+	);
+	return $tipos_sticker;
+}

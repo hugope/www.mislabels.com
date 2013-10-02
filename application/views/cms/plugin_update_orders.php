@@ -53,7 +53,7 @@
 		<div class="span12 well">
 			<div class="row-fluid">
 				<div class="span12">
-					<h5 class="title">Configurar &Oacute;rden</h5>
+					<h5 class="title">Configurar Orden</h5>
 					<form class="form-horizontal" action="<?php echo base_url('cms/plugin_orders/post_update_val/'.$SHOPPING_ID)?>" method="POST">
 						<?php echo form_hidden('CUSTOMER_EMAIL', $CUSTOMER_EMAIL)?>
 						<div class="control-group">

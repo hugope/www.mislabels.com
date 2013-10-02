@@ -9,14 +9,14 @@
 		<h3>B&uacute;squeda Filtrada</h3>
 		<span>Por Tipo de Set</span>
 		<ul>
-			<li><a href="javascript:void(0);"><input id="label_set_all" checked="checked" type="checkbox" value="" onclick="select_all_sets()"/> <label style="cursor:pointer;" for="label_set_all">Mostrar todos</label></a></li>
+			<li><a href="javascript:void(0);"><input id="label_set_all" checked="checked" type="checkbox" value="" onclick="select_all_sets()"/> <label style="cursor:pointer;" for="label_set_all">Deseleccionar todos</label></a></li>
 			<?php foreach($label_sets_filter as $label_set): $selected = ($label_set->ACTIVE)?'checked="checked"':'';?>
 			<li><a href="javascript:void(0);"><input class="label_set" name="labels_sets[]" type="checkbox" <?php echo $selected?> value="<?php echo $label_set->ID?>" id="labelset_<?php echo $label_set->ID?>" /> <label style="cursor:pointer;" for="labelset_<?php echo $label_set->ID?>"><?php echo $label_set->LABEL?></label></a></li>
 			<?php endforeach?>
 		</ul>
 		<span>Por Categor&iacute;a</span>
 		<ul>
-			<li><a href="javascript:void(0);"><input id="labels_categories_set_all" checked="checked" type="checkbox" value="" onclick="select_all_cats()" /> <label style="cursor:pointer;" for="labels_categories_set_all">Mostrar todos</label></a></li>
+			<li><a href="javascript:void(0);"><input id="labels_categories_set_all" checked="checked" type="checkbox" value="" onclick="select_all_cats()" /> <label style="cursor:pointer;" for="labels_categories_set_all">Deseleccionar todos</label></a></li>
 			<?php foreach($categories_filter as $cat):$selected = ($cat->ACTIVE)?'checked="checked"':'';?>
 			<li><a href="javascript:void(0);"><input class="label_cat" name="labels_categories[]" type="checkbox" <?php echo $selected?> value="<?php echo $cat->ID?>" id="categoryfilter_<?php echo $cat->ID?>" /> <label style="cursor:pointer;" for="categoryfilter_<?php echo $cat->ID?>"><?php echo $cat->CATEGORY_NAME?></label></a></li>
 			<?php endforeach?>
@@ -28,7 +28,7 @@
 <div class="catalogRight">
 	<div class="catlog_labeltab">
 		<h3>Labels:<a href="#"> Todas</a></h3>
-		<div class="pazinat"><strong>Mostrando: <span><?php echo ($total_rows < $per_page)?$total_rows:$per_page;?> de <?php echo $total_rows?></span></strong></div>
+		<div class="pazinat"><strong>Mostrando: <span><?php echo count($list_stickers);?> de <?php echo $total_rows?></span></strong></div>
 
 		<?php echo $pagination?>
 		<div class="clr"></div>
@@ -76,15 +76,18 @@
 
 	//Acción que ejecuta para chequear todos los campos
 	function set_inputs_checked(all_input, inputs){
-
+		var label = all_input.parent().find('label');
+		
 		if (all_input.is(":checked")) {
 			$(inputs).each(function(){
 				$(this).attr('checked', 'checked');
 			});
+			label.html('Deseleccionar todos')
 		}else{
 			$(inputs).each(function(){
 				$(this).removeAttr('checked', 'checked');
 			});
+			label.html('Seleccionar todos')
 
 		}
 	}

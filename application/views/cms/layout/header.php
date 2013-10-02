@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('library/cms/css/prettify.css')?>"></link>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('library/cms/src/bootstrap-wysihtml5.css')?>"></link>
 	<link rel="stylesheet" href="<?php echo base_url('library/cms/js/fileUploader/css/jquery.fileupload-ui.css')?>" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo base_url('library/cms/css/jquery-ui.css'); ?>" type="text/css" media="screen" />
 	    
     <!-- FRAMEWORK JAVASCRIPT -->
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" ></script>

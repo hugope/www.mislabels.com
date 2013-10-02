@@ -22,6 +22,7 @@
 	<script type="text/javascript" src="<?php echo base_url('library/cms/js/tagit.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('library/js/bootstrap.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('library/js/bootstrap.min.js')?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('library/js/lightbox.js')?>"></script>
 	<!--
 	<script type="text/javascript" src="<?php echo base_url('library/js/validation-engine/js/languages/jquery.validationEngine-es.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('library/js/validation-engine/js/jquery.validationEngine.js')?>"></script> -->
@@ -31,7 +32,7 @@
 		$(document).ready(function(){
 			
 			//Menu de botones Bootstrap
-			$('.btn').button('complete');
+			//$('.btn').button('complete');
 			
 			//Cambiar color de etiquetas colores
 			$('a.palette').click(function(){
@@ -63,17 +64,17 @@
 			$('.btn-group .btn').click(function(){
 				var size 		= $(this).attr('labelsize');
 				var inputsList	= $('.labelsInputList');
-				var inputLabel	= '<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Cereales" />';
+				var inputLabel	= '<input type="text" name="STICKER_LABEL[]" value="" class="labelsText validate[required]" placeholder="Escriba Aquí" /><hr />';
 				var imgSrc	= $('.tipoc img').attr('src');
 				var labelList	= $('.labelSetContainer.tipoc');
-				var imgLabel	= '<div class="prevlabel"><img src="'+imgSrc+'"><span>Cereales</span></div>';
+				var imgLabel	= '<div class="prevlabel"><img src="'+imgSrc+'"><span>Escriba Aquí</span></div>';
 				
 				$('.labelSetContainer.tipoc').removeClass('size20 size12 size40').addClass('size'+size);
 				inputsList.html(''); //Borrar listado de inputs
 				labelList.html(''); //Borrar etiquetas
 				
 				for($i = 0; $i < size; $i++){
-					inputsList.append(inputLabel); //Agregar listado de inputs según tamaño seleccionado
+					inputsList.append('<label>'+($i + 1)+'</label>'+inputLabel); //Agregar listado de inputs según tamaño seleccionado
 					labelList.append(imgLabel); //Agregar listado de etiquetas según tamaño seleccionado
 				}
 				
@@ -105,6 +106,20 @@
 		function form_validation(){
 			$("form").validationEngine();
 		}
+		
+		$(document).ready(function(){
+			$(window).scroll(function(){
+				if ($(this).scrollTop() > 100) {
+					$('.topUp').fadeIn();
+				} else {
+					$('.topUp').fadeOut();
+				}
+			});
+				$('.topUp').click(function(){
+				$("html, body").animate({ scrollTop: 0 }, 600);
+				return false;
+			});
+		});
 	</script>
 	<!--[if lt IE 9]>
 		<style>.leftbox_cata .ribbon{display:none}</style>

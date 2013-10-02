@@ -1888,7 +1888,7 @@ a.personalizar:hover {
 	margin:0px 0px 0px 0px;
 	padding:0px 0px;
 	float:right;
-	width:171px;
+	width:191px;
 	}
 
 .labelSetleft{
@@ -2030,25 +2030,59 @@ a.personalizar:hover {
 	}
 .textoBox.labelsInputList{
     height: 210px;
-    border:1px solid #EDEDED;
+    border:5px solid #EDEDED;
     overflow-y: scroll;
     border-radius: 10px 10px 10px 10px;
-    height: 210px;
+    height: 650px;
     overflow-y: scroll;
     padding: 10px;
+    margin-bottom:60px;
     }
+.textoBox.labelsInputList input{
+	border-radius:5px !important;
+}
+.textoBox label{
+    color: #989898;
+    float: left;
+    font-size: 20px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    width: 55px;
+}
+.textoBox hr{
+	float:left;
+	width:100%;
+	margin-bottom:10px;
+}
 .textoBox input{
 	margin:0px 0px 10px 0px;
-	padding:6px 30px 6px 10px;
+	padding:6px 10px;
 	font-size:22px;
 	font-weight:normal;
 	color:#555;
 	border:none;
-	width:310px;
-	background:url(../images/texto_inptbg.jpg) left top no-repeat;
+	width:290px;
+	-moz-box-shadow:    inset 0 0 10px #CCC;
+	-webkit-box-shadow: inset 0 0 10px #CCC;
+	box-shadow:         inset 0 0 10px #CCC;
+	background:#E9E9E9;
+	border-radius:5px 0 0 5px;
 	font-family:"Comic Sans MS";
+	float:left;
 	}
-
+.input-append .add-on:last-child, .input-append .btn:last-child, .input-append .btn-group:last-child > .dropdown-toggle {
+    border-radius: 0 4px 4px 0;
+}
+.height_divider{
+    float: left;
+    height: 50px;
+    width: 100%;
+}
+.textoBox .btn{
+	height:34px;
+	line-height:34px;
+}
 .refresh{
 	margin:14px 0px 0px 320px;
 	padding:0px 0px 0px 0px;
@@ -4881,4 +4915,52 @@ span.validation_error{
 }
 .btn-group a{
 	text-decoration: none;
+}
+/*Overlay POPUP*/
+#overlaypopup{
+	padding:10px;
+	border-radius:5px;
+	box-shadow:3px 3px 3px #0f0f0f;
+}
+#template_btn_container{
+    float: right;
+    padding: 10px 0 0;
+    text-align: center;
+    width: 485px;
+}
+a.btn{
+	text-decoration:none;
+}
+.well select{
+	-moz-box-shadow:    inset 0 0 10px #CCC;
+	-webkit-box-shadow: inset 0 0 10px #CCC;
+	box-shadow:         inset 0 0 10px #CCC;
+	background:#E9E9E9;
+	border: medium none;
+    color: #555555;
+    font-family: "Comic Sans MS";
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 0 10px 10px;
+    padding: 6px 10px;
+    width: 200px;
+    cursor:pointer;
+    border-radius:5px;
+	
+}
+.well h3{
+	width:100px;
+	text-align:right;
+	padding:0 5px;
+	float:left;
+	line-height:45px;
+}
+.well span{
+    color: #555555;
+    font-family: "Comic Sans MS";
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 0 10px 10px;
+    padding: 6px 10px;
+	line-height:45px;
 }
